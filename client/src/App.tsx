@@ -1,7 +1,7 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import { useTheme } from "./components";
+import { SacrLogo, useTheme } from "./components";
 import { History, TodaysFeed } from "./pages";
 
 function ThemeIcon({ theme }: { theme: "light" | "dark" }) {
@@ -47,7 +47,7 @@ function App() {
       <aside className="sidebar">
         <div className="sidebar-body">
           <div className="brand">
-            <img src="/sacr-logo.svg" alt="SACR" width="32" />
+            <SacrLogo />
             <div className="brand-wordmark">SACR Cyber Intel</div>
           </div>
 

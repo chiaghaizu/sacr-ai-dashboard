@@ -58,7 +58,18 @@ export function TodaysFeed() {
   }, [news]);
 
   const sortedCompanies = useMemo(() => {
-    return [...companies].sort((a, b) => {
+    const list = [...companies];
+    const anyTrackedCompanyHasNews = list.some(
+      (c) => (itemsByCompany.get(c) ?? []).length > 0,
+    );
+
+    if (!anyTrackedCompanyHasNews) {
+      return list.sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
+      );
+    }
+
+    return list.sort((a, b) => {
       const aItems = itemsByCompany.get(a) ?? [];
       const bItems = itemsByCompany.get(b) ?? [];
       const aLatest = aItems.length
@@ -70,6 +81,16 @@ export function TodaysFeed() {
       return bLatest - aLatest;
     });
   }, [companies, itemsByCompany]);
+
+  const companiesForFilterPills = useMemo(() => {
+    const names = new Set<string>(companies);
+    for (const item of news) {
+      names.add(item.company);
+    }
+    return [...names].sort((a, b) =>
+      a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
+    );
+  }, [companies, news]);
 
   const visibleCompanies = useMemo(() => {
     if (activeFilter === ALL_FILTER) {
@@ -104,7 +125,7 @@ export function TodaysFeed() {
             >
               {ALL_FILTER}
             </button>
-            {sortedCompanies.map((company) => (
+            {companiesForFilterPills.map((company) => (
               <button
                 key={company}
                 type="button"

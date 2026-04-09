@@ -38,11 +38,16 @@
   flex-shrink: 0;
 }
 
-.brand img {
+.brand-logo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  line-height: 0;
+}
+
+.brand-logo-svg {
   display: block;
-  width: 32px;
-  height: auto;
-  object-fit: contain;
+  overflow: visible;
 }
 
 .brand-mark {

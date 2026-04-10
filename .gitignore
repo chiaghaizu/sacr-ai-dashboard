@@ -9,3 +9,4 @@ server/node_modules
 client/node_modules
 server/dist/
 server/logs/
+backfill-run.log

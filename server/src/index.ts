@@ -14,9 +14,14 @@ import {
 dotenv.config();
 
 const app = express();
-const clientOrigin = process.env.CLIENT_ORIGIN ?? "http://localhost:5173";
+// Production (e.g. Cloud Run): same-origin SPA + API — reflect Origin when CLIENT_ORIGIN unset.
+const corsOrigin =
+  process.env.CLIENT_ORIGIN ??
+  (process.env.NODE_ENV === "production"
+    ? true
+    : "http://localhost:5173");
 
-app.use(cors({ origin: clientOrigin }));
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json());
 
 app.get("/health", (_req, res) => {
@@ -53,6 +58,11 @@ app.get("/api/history", async (req, res) => {
 });
 
 app.post("/api/generate", async (req, res) => {
+  if (process.env.NODE_ENV === "production") {
+    res.status(403).json({ error: "This endpoint is disabled in production." });
+    return;
+  }
+
   const body = req.body as { clients?: string[] };
   const clients = body.clients ?? [];
   if (!Array.isArray(clients) || clients.length === 0) {

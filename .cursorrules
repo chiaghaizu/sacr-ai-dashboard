@@ -114,7 +114,7 @@ Strip any markdown code fences from the response before parsing JSON, as Gemini 
 ### Header
 
 - Show today's date formatted as: `WEDNESDAY, APRIL 8TH, 2026` in small uppercase grey text
-- Below it, a large serif heading: `Good morning. Here is your client news briefing.`
+- Below it, a large serif heading: `Your client news briefing.`
 - Below the heading, show the last refresh time: `Last refreshed today at 8:04 AM` in small grey text. If `last_updated` is null, omit this line.
 
 ### Company Filter Buttons

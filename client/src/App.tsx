@@ -1,8 +1,37 @@
+import { useEffect, useState } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import { SacrLogo, useTheme } from "./components";
 import { History, TodaysFeed } from "./pages";
+
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      {open ? (
+        <>
+          <path d="M18 6L6 18" />
+          <path d="M6 6l12 12" />
+        </>
+      ) : (
+        <>
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </>
+      )}
+    </svg>
+  );
+}
 
 function ThemeIcon({ theme }: { theme: "light" | "dark" }) {
   if (theme === "dark") {
@@ -41,14 +70,49 @@ function ThemeIcon({ theme }: { theme: "light" | "dark" }) {
 function App() {
   const { effectiveTheme, toggleMode } = useTheme();
   const nextTheme = effectiveTheme === "dark" ? "light" : "dark";
+  const [navOpen, setNavOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setNavOpen(false);
+      }
+    };
+    const onPop = () => setNavOpen(false);
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("popstate", onPop);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("popstate", onPop);
+    };
+  }, []);
 
   return (
     <div className="app-layout">
-      <aside className="sidebar">
+      <div
+        className={`sidebar-backdrop ${navOpen ? "sidebar-backdrop--visible" : ""}`}
+        onClick={() => setNavOpen(false)}
+        aria-hidden="true"
+      />
+
+      <aside
+        id="app-sidebar"
+        className={`sidebar ${navOpen ? "sidebar--open" : ""}`}
+      >
         <div className="sidebar-body">
-          <div className="brand">
-            <SacrLogo />
-            <div className="brand-wordmark">SACR Cyber Intel</div>
+          <div className="sidebar-brand-row">
+            <div className="brand">
+              <SacrLogo />
+              <div className="brand-wordmark">SACR Cyber Intel</div>
+            </div>
+            <button
+              type="button"
+              className="sidebar-close"
+              onClick={() => setNavOpen(false)}
+              aria-label="Close menu"
+            >
+              <MenuIcon open />
+            </button>
           </div>
 
           <nav className="sidebar-nav" aria-label="Main navigation">
@@ -58,6 +122,7 @@ function App() {
               className={({ isActive }) =>
                 `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
               }
+              onClick={() => setNavOpen(false)}
             >
               Today&apos;s Feed
             </NavLink>
@@ -66,6 +131,7 @@ function App() {
               className={({ isActive }) =>
                 `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
               }
+              onClick={() => setNavOpen(false)}
             >
               History
             </NavLink>
@@ -86,7 +152,26 @@ function App() {
         </button>
       </aside>
 
-      <div className="content-shell">
+      <header className="mobile-header">
+        <button
+          type="button"
+          className="mobile-menu-btn"
+          onClick={() => setNavOpen((o) => !o)}
+          aria-expanded={navOpen}
+          aria-controls="app-sidebar"
+          aria-label={navOpen ? "Close menu" : "Open menu"}
+        >
+          <MenuIcon open={navOpen} />
+        </button>
+        <div className="mobile-header-brand">
+          <SacrLogo />
+          <span className="mobile-header-wordmark">SACR Cyber Intel</span>
+        </div>
+      </header>
+
+      <div
+        className={`content-shell ${navOpen ? "content-shell--nav-open" : ""}`}
+      >
         <main className="content">
           <Routes>
             <Route path="/" element={<TodaysFeed />} />

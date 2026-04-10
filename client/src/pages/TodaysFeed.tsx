@@ -104,7 +104,7 @@ export function TodaysFeed() {
   return (
     <section>
       <p className="todays-date">{formatTodayDateLabel(new Date())}</p>
-      <h1 className="page-heading">Good morning. Here is your client news briefing.</h1>
+      <h1 className="page-heading">Client News Briefings</h1>
       {lastUpdated ? (
         <p className="todays-last-updated">
           Last refreshed today at {toEasternLastRefreshed(lastUpdated)}

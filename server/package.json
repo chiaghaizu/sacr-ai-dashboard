@@ -10,19 +10,21 @@
     "backfill": "tsx src/scripts/backfill.ts"
   },
   "dependencies": {
-    "@google/genai": "^1.17.0",
+    "@google/genai": "^1.29.0",
     "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.49.8",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "googleapis": "^171.4.0"
+    "googleapis": "^171.4.0",
+    "node-cron": "^4.2.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
+    "@types/node-cron": "^3.0.11",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }

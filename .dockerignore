@@ -8,4 +8,8 @@ server/dist
 !.env.example
 *.md
 .cursor
+.claude
 .DS_Store
+*.log
+intel-state.json
+data.json

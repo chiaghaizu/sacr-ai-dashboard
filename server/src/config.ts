@@ -29,5 +29,5 @@ export const DEFAULT_COMPANIES = [
 ];
 
 export const PORT = Number(process.env.PORT ?? 4000);
-export const CRON_SECRET = requireEnv("CRON_SECRET");
-export const GOOGLE_SHEETS_ID = requireEnv("GOOGLE_SHEETS_ID");
+export const CRON_SECRET = process.env.CRON_SECRET ?? "";
+export const GOOGLE_SHEETS_ID = process.env.GOOGLE_SHEETS_ID ?? "";

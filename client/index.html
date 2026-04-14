@@ -4,24 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/sacr-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Theme key + logic must match client/src/components/ThemeProvider.tsx -->
+    <!-- Theme detection: adds .dark class if user prefers dark mode -->
     <script>
       (function () {
         try {
-          var key = "sacr-theme";
-          var t = localStorage.getItem(key);
-          if (t === "light" || t === "dark") {
-            document.documentElement.setAttribute("data-theme", t);
+          var t = localStorage.getItem("theme");
+          if (t === "dark") {
+            document.documentElement.classList.add("dark");
             return;
           }
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-          document.documentElement.setAttribute("data-theme", t);
-          localStorage.setItem(key, t);
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "light");
-        }
+          if (t === "light") return;
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          }
+        } catch (e) {}
       })();
     </script>
     <link

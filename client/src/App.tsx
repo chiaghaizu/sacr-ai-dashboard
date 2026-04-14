@@ -14,7 +14,7 @@ import { Logo } from './components/Logo';
 import type { View } from './components/Sidebar';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<View>('briefing');
+  const [currentView, setCurrentView] = useState<View>('history');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {

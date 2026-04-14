@@ -1,4 +1,4 @@
-import { FileText, Settings, Bug, BookOpen, Sun, Moon, X, Search, Newspaper, History } from 'lucide-react';
+import { FileText, Sun, Moon, X, History } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Logo } from './Logo';
 
@@ -30,32 +30,6 @@ export function Sidebar({ currentView, setCurrentView, theme, toggleTheme, close
 
       <nav className="flex-1 px-4 py-2 space-y-1">
         <button
-          onClick={() => setCurrentView('briefing')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'briefing'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
-          <FileText size={16} />
-          Today's Briefing
-        </button>
-
-        <button
-          onClick={() => setCurrentView('client-news')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'client-news'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
-          <Newspaper size={16} />
-          Client News
-        </button>
-
-        <button
           onClick={() => setCurrentView('history')}
           className={cn(
             "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
@@ -69,55 +43,16 @@ export function Sidebar({ currentView, setCurrentView, theme, toggleTheme, close
         </button>
 
         <button
-          onClick={() => setCurrentView('cve')}
+          onClick={() => setCurrentView('briefing')}
           className={cn(
             "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'cve'
+            currentView === 'briefing'
               ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
               : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
           )}
         >
-          <Bug size={16} />
-          CVE Feed
-        </button>
-
-        <button
-          onClick={() => setCurrentView('research')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'research'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
-          <BookOpen size={16} />
-          Research Feed
-        </button>
-
-        <button
-          onClick={() => setCurrentView('search')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'search'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
-          <Search size={16} />
-          Search
-        </button>
-
-        <button
-          onClick={() => setCurrentView('settings')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'settings'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
-          <Settings size={16} />
-          Settings
+          <FileText size={16} />
+          Today's Briefing
         </button>
       </nav>
 

@@ -1,20 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { BriefingView } from './components/BriefingView';
-import { SettingsView } from './components/SettingsView';
-import { CVEView } from './components/CVEView';
-import { ResearchView } from './components/ResearchView';
-import { SearchView } from './components/SearchView';
-import { TodaysFeedView } from './components/TodaysFeedView';
 import { HistoryView } from './components/HistoryView';
 import { fetchFeeds, triggerGeneration, saveSettings } from './services/intelligence';
 import type { CVEItem, ResearchItem, NewsItem } from './services/intelligence';
 import { Menu } from 'lucide-react';
 import { Logo } from './components/Logo';
-import type { View } from './components/Sidebar';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<View>('history');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
@@ -51,13 +45,13 @@ export default function App() {
 
   // Centralized Feed State
   const [briefingContent, setBriefingContent] = useState<string | null>(null);
-  const [trendingTopics, setTrendingTopics] = useState<string[]>([]);
+  const [_trendingTopics, setTrendingTopics] = useState<string[]>([]);
   const [briefingHistory, setBriefingHistory] = useState<any[]>([]);
-  const [structuredFeed, setStructuredFeed] = useState<NewsItem[] | null>(null);
+  const [_structuredFeed, setStructuredFeed] = useState<NewsItem[] | null>(null);
   const [structuredHistory, setStructuredHistory] = useState<{ date: string; news: NewsItem[] }[]>([]);
-  const [cves, setCves] = useState<CVEItem[] | null>(null);
-  const [cveTrendingAcronyms, setCveTrendingAcronyms] = useState<string[] | null>(null);
-  const [research, setResearch] = useState<ResearchItem[] | null>(null);
+  const [_cves, setCves] = useState<CVEItem[] | null>(null);
+  const [_cveTrendingAcronyms, setCveTrendingAcronyms] = useState<string[] | null>(null);
+  const [_research, setResearch] = useState<ResearchItem[] | null>(null);
   const [lastGenerated, setLastGenerated] = useState<Date | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -127,8 +121,6 @@ export default function App() {
   // Load feeds on mount
   useEffect(() => {
     loadFeeds();
-
-    // Poll every 10 seconds to check if background generation finished
     const interval = setInterval(loadFeeds, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -156,11 +148,6 @@ export default function App() {
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <Sidebar
-          currentView={currentView}
-          setCurrentView={(view) => {
-            setCurrentView(view);
-            setIsSidebarOpen(false);
-          }}
           theme={theme}
           toggleTheme={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
           closeSidebar={() => setIsSidebarOpen(false)}
@@ -170,69 +157,30 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 h-full overflow-y-auto relative">
         <div className="max-w-4xl mx-auto px-6 py-12 md:px-12 md:py-16">
-          {currentView === 'briefing' && (
-            <BriefingView
-              content={briefingContent}
-              history={briefingHistory}
-              isGenerating={isGenerating}
-              lastGenerated={lastGenerated}
-              error={error}
-              onRegenerate={handleGenerateAll}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HistoryView
+                  history={structuredHistory}
+                  isGenerating={isGenerating}
+                />
+              }
             />
-          )}
-
-          {currentView === 'client-news' && (
-            <TodaysFeedView
-              news={structuredFeed}
-              lastUpdated={lastGenerated ? lastGenerated.toISOString() : null}
-              isGenerating={isGenerating}
-              error={error}
-              onRegenerate={handleGenerateAll}
+            <Route
+              path="/briefing"
+              element={
+                <BriefingView
+                  content={briefingContent}
+                  history={briefingHistory}
+                  isGenerating={isGenerating}
+                  lastGenerated={lastGenerated}
+                  error={error}
+                  onRegenerate={handleGenerateAll}
+                />
+              }
             />
-          )}
-
-          {currentView === 'history' && (
-            <HistoryView
-              history={structuredHistory}
-              isGenerating={isGenerating}
-            />
-          )}
-
-          {currentView === 'settings' && (
-            <SettingsView
-              clients={clients}
-              setClients={setClients}
-              watchlist={watchlist}
-              setWatchlist={setWatchlist}
-            />
-          )}
-
-          {currentView === 'cve' && (
-            <CVEView
-              cves={cves}
-              trendingAcronyms={cveTrendingAcronyms}
-              isGenerating={isGenerating}
-              error={error}
-              onRegenerate={handleGenerateAll}
-            />
-          )}
-
-          {currentView === 'research' && (
-            <ResearchView
-              research={research}
-              trendingTopics={trendingTopics}
-              isGenerating={isGenerating}
-              error={error}
-              onRegenerate={handleGenerateAll}
-            />
-          )}
-
-          {currentView === 'search' && (
-            <SearchView
-              clients={clients}
-              watchlist={watchlist}
-            />
-          )}
+          </Routes>
         </div>
       </main>
 

@@ -1,18 +1,23 @@
 import { FileText, Sun, Moon, X, History } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { Logo } from './Logo';
 
-export type View = 'briefing' | 'settings' | 'cve' | 'research' | 'search' | 'client-news' | 'history';
-
 interface SidebarProps {
-  currentView: View;
-  setCurrentView: (view: View) => void;
   theme: 'light' | 'dark';
   toggleTheme: () => void;
   closeSidebar: () => void;
 }
 
-export function Sidebar({ currentView, setCurrentView, theme, toggleTheme, closeSidebar }: SidebarProps) {
+export function Sidebar({ theme, toggleTheme, closeSidebar }: SidebarProps) {
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    cn(
+      "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+      isActive
+        ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
+        : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
+    );
+
   return (
     <div className="h-full bg-[var(--color-bg-sidebar)] border-r border-[var(--color-border)] flex flex-col">
       <div className="p-4 md:p-6 flex items-center justify-between">
@@ -29,31 +34,15 @@ export function Sidebar({ currentView, setCurrentView, theme, toggleTheme, close
       </div>
 
       <nav className="flex-1 px-4 py-2 space-y-1">
-        <button
-          onClick={() => setCurrentView('history')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'history'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
+        <NavLink to="/" end className={linkClass} onClick={closeSidebar}>
           <History size={16} />
           News History
-        </button>
+        </NavLink>
 
-        <button
-          onClick={() => setCurrentView('briefing')}
-          className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            currentView === 'briefing'
-              ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-sm border border-[var(--color-border)]"
-              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)] hover:text-[var(--color-text-primary)]"
-          )}
-        >
+        <NavLink to="/briefing" className={linkClass} onClick={closeSidebar}>
           <FileText size={16} />
           Today's Briefing
-        </button>
+        </NavLink>
       </nav>
 
       <div className="p-4 border-t border-[var(--color-border)] space-y-4">

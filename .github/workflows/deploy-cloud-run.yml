@@ -1,10 +1,10 @@
-# Deploy container to Cloud Run on push to main.
+# Deploy container to Cloud Run on push to main or Test-Branch.
 # One-time GCP + GitHub secrets: see .github/GITHUB_DEPLOY_SETUP.md
 name: Deploy to Cloud Run
 
 on:
   push:
-    branches: [main]
+    branches: [main, Test-Branch]
 
 concurrency:
   group: deploy-cloud-run-${{ github.ref }}

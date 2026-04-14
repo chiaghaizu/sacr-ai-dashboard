@@ -3,8 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { BriefingView } from './components/BriefingView';
 import { HistoryView } from './components/HistoryView';
+import { SearchView } from './components/SearchView';
 import { fetchFeeds, triggerGeneration, saveSettings } from './services/intelligence';
-import type { CVEItem, ResearchItem, NewsItem } from './services/intelligence';
+import type { NewsItem } from './services/intelligence';
 import { Menu } from 'lucide-react';
 import { Logo } from './components/Logo';
 
@@ -45,13 +46,8 @@ export default function App() {
 
   // Centralized Feed State
   const [briefingContent, setBriefingContent] = useState<string | null>(null);
-  const [_trendingTopics, setTrendingTopics] = useState<string[]>([]);
   const [briefingHistory, setBriefingHistory] = useState<any[]>([]);
-  const [_structuredFeed, setStructuredFeed] = useState<NewsItem[] | null>(null);
   const [structuredHistory, setStructuredHistory] = useState<{ date: string; news: NewsItem[] }[]>([]);
-  const [_cves, setCves] = useState<CVEItem[] | null>(null);
-  const [_cveTrendingAcronyms, setCveTrendingAcronyms] = useState<string[] | null>(null);
-  const [_research, setResearch] = useState<ResearchItem[] | null>(null);
   const [lastGenerated, setLastGenerated] = useState<Date | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -69,9 +65,6 @@ export default function App() {
   const processData = (data: any) => {
     if (data.briefing) {
       setBriefingContent(data.briefing.markdown || data.briefing);
-      if (data.briefing.trendingTopics) {
-        setTrendingTopics(data.briefing.trendingTopics);
-      }
       if (data.briefing.promotedToWatchlist && data.briefing.promotedToWatchlist.length > 0) {
         const toPromote = data.briefing.promotedToWatchlist;
         setWatchlist(prev => {
@@ -84,12 +77,8 @@ export default function App() {
       if (data.settings.clients) setClients(data.settings.clients);
       if (data.settings.watchlist) setWatchlist(data.settings.watchlist);
     }
-    if (data.cves) setCves(data.cves);
-    if (data.cveTrendingAcronyms) setCveTrendingAcronyms(data.cveTrendingAcronyms);
-    if (data.research) setResearch(data.research);
     if (data.lastUpdated) setLastGenerated(new Date(data.lastUpdated));
     if (data.history) setBriefingHistory(data.history);
-    if (data.structuredFeed) setStructuredFeed(data.structuredFeed);
     if (data.structuredHistory) setStructuredHistory(data.structuredHistory);
 
     if (data.isGeneratingBackground !== undefined) {
@@ -177,6 +166,15 @@ export default function App() {
                   lastGenerated={lastGenerated}
                   error={error}
                   onRegenerate={handleGenerateAll}
+                />
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <SearchView
+                  clients={clients}
+                  watchlist={watchlist}
                 />
               }
             />

@@ -1,4 +1,4 @@
-import { FileText, Sun, Moon, X, History } from 'lucide-react';
+import { FileText, Sun, Moon, X, History, Search } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { Logo } from './Logo';
@@ -42,6 +42,11 @@ export function Sidebar({ theme, toggleTheme, closeSidebar }: SidebarProps) {
         <NavLink to="/briefing" className={linkClass} onClick={closeSidebar}>
           <FileText size={16} />
           Today's Briefing
+        </NavLink>
+
+        <NavLink to="/search" className={linkClass} onClick={closeSidebar}>
+          <Search size={16} />
+          Search
         </NavLink>
       </nav>
 

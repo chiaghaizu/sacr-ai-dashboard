@@ -1,0 +1,353 @@
+[
+  {
+    "id": "crowdstrike",
+    "name": "Crowdstrike",
+    "approvedDomains": [
+      "crowdstrike.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.crowdstrike.com/cms-sitemap.xml"
+    ]
+  },
+  {
+    "id": "palo-alto-networks",
+    "name": "Palo Alto Networks",
+    "approvedDomains": [
+      "paloaltonetworks.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.paloaltonetworks.com/blog/post-sitemap5.xml"
+    ]
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "approvedDomains": [
+      "microsoft.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.microsoft.com/en-us/security/blog/post-sitemap.xml",
+      "https://www.microsoft.com/en-us/security/blog/post-sitemap2.xml"
+    ]
+  },
+  {
+    "id": "orca",
+    "name": "Orca",
+    "approvedDomains": [
+      "orca.security"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://orca.security/blog/post-sitemap.xml",
+      "https://orca.security/blog/post-sitemap2.xml"
+    ]
+  },
+  {
+    "id": "mitiga",
+    "name": "Mitiga",
+    "approvedDomains": [
+      "mitiga.io"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.mitiga.io/sitemap.xml"
+    ]
+  },
+  {
+    "id": "wiz",
+    "name": "Wiz",
+    "approvedDomains": [
+      "wiz.io"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.wiz.io/sitemap-1.xml"
+    ]
+  },
+  {
+    "id": "cyera",
+    "name": "Cyera",
+    "approvedDomains": [
+      "cyera.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.cyera.com/sitemap.xml"
+    ]
+  },
+  {
+    "id": "teleskope",
+    "name": "Teleskope",
+    "approvedDomains": [
+      "teleskope.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "neural-trust",
+    "name": "Neural Trust",
+    "approvedDomains": [
+      "neuraltrust.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://neuraltrust.ai/sitemap.xml"
+    ]
+  },
+  {
+    "id": "cyata",
+    "name": "Cyata",
+    "approvedDomains": [
+      "cyata.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://cyata.ai/post-sitemap.xml"
+    ]
+  },
+  {
+    "id": "okta",
+    "name": "Okta",
+    "approvedDomains": [
+      "okta.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.okta.com/sitemap-aem.xml"
+    ]
+  },
+  {
+    "id": "neon-security",
+    "name": "Neon Security",
+    "approvedDomains": [
+      "neonsecurity.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "conductorone",
+    "name": "ConductorOne",
+    "approvedDomains": [
+      "conductorone.com",
+      "c1.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://www.c1.ai/sitemap-blog.xml"
+    ]
+  },
+  {
+    "id": "imper-ai",
+    "name": "Imper AI",
+    "approvedDomains": [
+      "imper.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": [
+      "https://imper.ai/post-sitemap.xml"
+    ]
+  },
+  {
+    "id": "silverfort",
+    "name": "Silverfort",
+    "approvedDomains": [
+      "silverfort.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "opti",
+    "name": "Opti",
+    "approvedDomains": [
+      "opti.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "1password",
+    "name": "1Password",
+    "approvedDomains": [
+      "1password.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "orchid",
+    "name": "Orchid",
+    "approvedDomains": [
+      "orchid.security"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "aizome",
+    "name": "Aizome",
+    "approvedDomains": [
+      "aizome.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "apono",
+    "name": "Apono",
+    "approvedDomains": [
+      "apono.io"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "teleport",
+    "name": "Teleport",
+    "approvedDomains": [
+      "goteleport.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "swimlane",
+    "name": "Swimlane",
+    "approvedDomains": [
+      "swimlane.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "panther",
+    "name": "Panther",
+    "approvedDomains": [
+      "panther.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "cribl",
+    "name": "Cribl",
+    "approvedDomains": [
+      "cribl.io"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "vega",
+    "name": "Vega",
+    "approvedDomains": [
+      "vega.io"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "brava-security",
+    "name": "Brava Security",
+    "approvedDomains": [
+      "brava.security"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "ai-strike",
+    "name": "AI Strike",
+    "approvedDomains": [
+      "aistrike.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "anomali",
+    "name": "Anomali",
+    "approvedDomains": [
+      "anomali.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "acalvio",
+    "name": "Acalvio",
+    "approvedDomains": [
+      "acalvio.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "abnormal-ai",
+    "name": "Abnormal AI",
+    "approvedDomains": [
+      "abnormal.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "cimento",
+    "name": "Cimento",
+    "approvedDomains": [
+      "cimento.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "netskope",
+    "name": "Netskope",
+    "approvedDomains": [
+      "netskope.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "stifel",
+    "name": "Stifel",
+    "approvedDomains": [
+      "stifel.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "surf-ai",
+    "name": "Surf AI",
+    "approvedDomains": [
+      "surf.ai"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "clearvector",
+    "name": "ClearVector",
+    "approvedDomains": [
+      "clearvector.com"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  },
+  {
+    "id": "bloom-security",
+    "name": "Bloom Security",
+    "approvedDomains": [
+      "bloom.security"
+    ],
+    "rssFeeds": [],
+    "sitemapUrls": []
+  }
+]

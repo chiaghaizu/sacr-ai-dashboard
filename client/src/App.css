@@ -186,6 +186,10 @@
   box-shadow: var(--color-shadow);
 }
 
+[data-theme="dark"] .sidebar-link-active {
+  color: #ffffff;
+}
+
 .theme-toggle {
   flex-shrink: 0;
   margin-top: 16px;

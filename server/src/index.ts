@@ -10,6 +10,7 @@ import {
   getCurrentFeed,
   getHistory,
 } from "./services/feedService";
+import { semanticSearch } from "./services/searchService";
 
 dotenv.config();
 
@@ -99,6 +100,22 @@ app.post("/api/refresh", async (req, res) => {
   } catch (error) {
     console.error("POST /api/refresh failed", error);
     res.status(500).json({ error: "Failed to refresh feed." });
+  }
+});
+
+app.post("/api/search", async (req, res) => {
+  const { query } = req.body as { query?: string };
+  if (!query || typeof query !== "string" || !query.trim()) {
+    res.status(400).json({ error: "A non-empty query string is required." });
+    return;
+  }
+
+  try {
+    const result = await semanticSearch(query.trim());
+    res.status(200).json({ result });
+  } catch (error) {
+    console.error("POST /api/search failed", error);
+    res.status(500).json({ error: "Failed to perform semantic search." });
   }
 });
 

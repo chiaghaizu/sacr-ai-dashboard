@@ -3,7 +3,7 @@ import { NavLink, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import { SacrLogo, useTheme } from "./components";
-import { History, TodaysFeed } from "./pages";
+import { History, Search, TodaysFeed } from "./pages";
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -135,6 +135,15 @@ function App() {
             >
               History
             </NavLink>
+            <NavLink
+              to="/search"
+              className={({ isActive }) =>
+                `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+              }
+              onClick={() => setNavOpen(false)}
+            >
+              Search
+            </NavLink>
           </nav>
         </div>
 
@@ -176,6 +185,7 @@ function App() {
           <Routes>
             <Route path="/" element={<TodaysFeed />} />
             <Route path="/history" element={<History />} />
+            <Route path="/search" element={<Search />} />
           </Routes>
         </main>
       </div>

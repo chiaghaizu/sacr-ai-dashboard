@@ -69,6 +69,22 @@
   cursor: not-allowed;
 }
 
+[data-theme="dark"] .search-submit {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .search-input:focus + .search-submit,
+[data-theme="dark"] .search-input:not(:placeholder-shown) + .search-submit {
+  color: #2d2d2d;
+}
+
+/* Keep disabled label readable in dark mode (avoid dimming text via opacity). */
+[data-theme="dark"] .search-submit:disabled {
+  opacity: 1;
+  color: #ffffff;
+  background: #4a4a4a;
+}
+
 /* Error banner */
 .search-error {
   margin: 20px 0;
